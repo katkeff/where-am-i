@@ -1,12 +1,11 @@
-import Streetview from 'react-google-streetview';
 import Mapview from './components/Mapview'
 
-function StreetView() {
+function App() {
   return (
     <div className="App">
-      <Streetview />
+      <Mapview />
     </div>
   );
 }
 
-export default Mapview;
+export default App;
