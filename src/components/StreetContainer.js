@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import APIKey from '../googleAPIKey'
 
-const Mapview = () => {
+const StreetContainer = () => {
 
   const retroStyling = 
   [
@@ -237,10 +237,10 @@ const Mapview = () => {
           mapContainerStyle={mapStyles}
           zoom={13}
           center={defaultCenter}
-          options={{ styles: retroStyling }}
+          options={{ styles: retroStyling, streetViewControl: false }}
         />
     </LoadScript>
   )
 }
 
-export default Mapview;
+export default StreetContainer;
