@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactStreetview from "react-streetview";
 import APIKey from '../googleAPIKey'
 
-class App extends React.Component {
+class Street extends React.Component {
   render() {
 
     const streetViewPanoramaOptions = {
@@ -19,7 +19,6 @@ class App extends React.Component {
         style={{
           width: "50%",
           height: "75vh",
-          backgroundColor: "#eeeeee"
         }}
       >
         <ReactStreetview
@@ -31,4 +30,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Street;
