@@ -1,5 +1,6 @@
 body { 
-  background: linear-gradient(90deg, rgba(87,93,87,1) 0%, rgba(57,80,78,1) 35%, rgba(48,94,89,1) 100%);
+  background: #212529;
+  color: white;
 }
 
 .Maps {

@@ -1,36 +1,39 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactStreetview from "react-streetview";
-import { GoogleMap, LoadScript } from '@react-google-maps/api'
-import APIKey from '../googleAPIKey'
+import { LoadScript } from "@react-google-maps/api";
+import APIKey from "../googleAPIKey";
+import places from "../assets/coordinates.js"
 
-const StreetContainer = () => { {
+const StreetContainer = () => {
+
+  let currentPlace = places[Math.floor(Math.random() * (places.length))]
+  let coordinates = currentPlace[0]
+  let area = currentPlace[1].location
 
   const streetViewPanoramaOptions = {
-    position: { lat: 27.289821, lng: -82.481325 },
+    position: coordinates ,
     pov: { heading: 100, pitch: 0 },
     zoom: 1,
     addressControl: false,
     showRoadLabels: false,
-    zoomControl: false
+    zoomControl: false,
   };
 
-    return (
-      <LoadScript
-      googleMapsApiKey={APIKey}>
+  return (
+    <LoadScript googleMapsApiKey={APIKey}>
       <div
         style={{
           width: "50%",
           height: "75vh",
-        }}
-      >
+        }}>
         <ReactStreetview
           apiKey={APIKey}
           streetViewPanoramaOptions={streetViewPanoramaOptions}
         />
       </div>
-      </LoadScript>
-    );
-  }
-}
+      <div> { area } </div>
+    </LoadScript>
+  );
+};
 
 export default StreetContainer;
