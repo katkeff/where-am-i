@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import APIKey from "../googleAPIKey";
 import mapStyling from "../assets/mapStyling";
@@ -15,6 +15,7 @@ const MapContainer = () => {
     lng: -76.1436,
   };
 
+
   return (
     <LoadScript googleMapsApiKey={APIKey}>
       <GoogleMap
@@ -28,3 +29,4 @@ const MapContainer = () => {
 };
 
 export default MapContainer;
+
