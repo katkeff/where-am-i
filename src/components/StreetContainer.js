@@ -31,7 +31,6 @@ const StreetContainer = () => {
           streetViewPanoramaOptions={streetViewPanoramaOptions}
         />
       </div>
-      <div> { area } </div>
     </LoadScript>
   );
 };
