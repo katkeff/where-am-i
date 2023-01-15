@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import APIKey from "../googleAPIKey";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import mapStyling from "../assets/mapStyling";
-import places from "../assets/coordinates";
+import APIKey from "../googleAPIKey";
 
 const MapContainer = () => {
-
-  let currentPlace = places[Math.floor(Math.random() * (places.length))]
-  let coordinates = currentPlace[0]
-
   const [latLng, setLatLng] = useState({ lat: null, lng: null });
   const [defaultCenter, setDefaultCenter] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -19,11 +13,8 @@ const MapContainer = () => {
         position => {
           const { latitude, longitude } = position.coords;
           setDefaultCenter({ lat: latitude, lng: longitude });
-        },
-        error => setErrorMessage(error.message)
+        }
       );
-    } else {
-      setErrorMessage("Geolocation is not supported by this browser.");
     }
   }, []);
 
@@ -33,15 +24,9 @@ const MapContainer = () => {
   };
 
   const handleMapClick = (event) => {
-    event.stop();
-    setLatLng({
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
-    });
-    setDefaultCenter({
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
-    });
+    setLatLng(event.latLng.toJSON());
+    setDefaultCenter(event.latLng.toJSON());
+    console.log(latLng)
   };
 
   return (
@@ -49,11 +34,13 @@ const MapContainer = () => {
       <LoadScript googleMapsApiKey={APIKey}>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={6}
+          zoom={2}
           center={defaultCenter}
           options={{ styles: mapStyling, streetViewControl: false }}
           onClick={handleMapClick}
-        />
+        >
+                    {Object.keys(latLng).length !== 0 && <Marker position={latLng} key={latLng.lat} />}
+        </GoogleMap>
       </LoadScript>
       <div>
         {latLng.lat && latLng.lng
